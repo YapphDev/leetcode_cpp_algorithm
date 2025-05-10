@@ -1,0 +1,44 @@
+class Solution {
+public:
+    string intToRoman(int num) {
+        string roman;
+        int number = num;
+        int red = 0;
+        int j = 0;
+        char symbol[4][4]= {{'I','V','X'},
+                            {'X','L','C'},
+                            {'C','D','M'},
+                            {'M'}};
+        while (number)
+        {
+            red = number%10;
+            number = number/10;
+            if (red)
+            {
+                if (red - 5 <= -2)
+                {
+                    for (int i = 0; i < red; i ++)
+                        roman.insert (roman.begin(),symbol[j][0]);
+                }
+                else if (red == 4)
+                {
+                    roman.insert (roman.begin(),symbol[j][1]);
+                    roman.insert (roman.begin(),symbol[j][0]);
+                }
+                else if (red == 9)
+                {
+                    roman.insert (roman.begin(),symbol[j][2]);
+                    roman.insert (roman.begin(),symbol[j][0]);
+                }
+                else
+                {
+                    for (int i = 0; i < red - 5; i ++)
+                        roman.insert (roman.begin(),symbol[j][0]);
+                    roman.insert (roman.begin(),symbol[j][1]);
+                }
+            }
+            j++;
+        }
+        return roman;
+    }
+};
